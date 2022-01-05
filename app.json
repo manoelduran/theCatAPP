@@ -1,0 +1,11 @@
+{
+  "expo": {
+    "name": "Catapp",
+    "slug": "Catapp",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  },
+  "name": "Catapp"
+}
