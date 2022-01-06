@@ -10,10 +10,19 @@ import * as api from '../../services/api';
 import { SearchInput } from '../../components/SearchInput';
 import { LoadAnimation } from '../../components/LoadAnimation';
 import { CatCard } from '../../components/CatCard';
-
+import { useNavigation } from '@react-navigation/native';
+interface NavigationProps {
+    navigate: (screen: string, {}) => void
+  }
 export function Home() {
     const [cats, setCats] = useState<Cat[]>([]);
+    const navigation = useNavigation<NavigationProps>();
     const [loading, setLoading] = useState(true);
+    function handleCatCard(cat: Cat) {
+    navigation.navigate('Cat', {
+        cat
+    })
+    }
     useEffect(() => {
         let Mounted = true;
         async function ShowCats() {
@@ -52,7 +61,7 @@ export function Home() {
                     data={cats}
                     keyExtractor={(item: Cat) => item.id}
                     renderItem={({ item }: any) =>
-                        <CatCard data={item} onPress={() => { }} />}
+                        <CatCard data={item} onPress={() => handleCatCard(item)} />}
                 />
             }
         </Container>

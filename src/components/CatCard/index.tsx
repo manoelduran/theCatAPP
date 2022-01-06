@@ -13,7 +13,7 @@ interface CatCardProps extends RectButtonProps {
 export function CatCard({ data, ...rest }: CatCardProps) {
     return (
         <Container  {...rest} >
-            <Image source={{ uri: data?.image?.url}} resizeMode="contain" />
+            <Image source={{ uri: data?.image?.url }} width={data?.image?.width} height={data?.image?.height} resizeMode="contain" />
             <DataContainer>
                 <Name> {data.name} </Name>
                 <Description> {data.description} </Description>
