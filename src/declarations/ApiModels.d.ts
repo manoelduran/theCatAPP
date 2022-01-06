@@ -3,8 +3,8 @@ interface Cat {
         imperial: string;
         metric: string;
     };
-    id: abys;
-    name: Abyssinian;
+    id: string;
+    name: string;
     cfa_url: string;
     vetstreet_url: string;
     vcahospitals_url: string;

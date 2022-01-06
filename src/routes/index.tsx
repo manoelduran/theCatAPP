@@ -1,13 +1,12 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { AppTabRoutes } from './app.tab.routes';
-import { AuthStack } from './auth.routes';
+import { AppStackRoutes } from './app.stack.routes';
 
 export function Routes() {
-    const user = "dasdsadas";
     return (
         <NavigationContainer>
-            {user ? <AppTabRoutes /> : <AuthStack />}
+            <AppStackRoutes />
         </NavigationContainer>
     )
 }

@@ -11,26 +11,19 @@ import { SearchInput } from '../../components/SearchInput';
 import { LoadAnimation } from '../../components/LoadAnimation';
 import { CatCard } from '../../components/CatCard';
 import { useNavigation } from '@react-navigation/native';
-interface NavigationProps {
-    navigate: (screen: string, {}) => void
-  }
+
 export function Home() {
     const [cats, setCats] = useState<Cat[]>([]);
-    const navigation = useNavigation<NavigationProps>();
+    const navigation = useNavigation<any>();
     const [loading, setLoading] = useState(true);
-    function handleCatCard(cat: Cat) {
-    navigation.navigate('Cat', {
-        cat
-    })
-    }
+
     useEffect(() => {
         let Mounted = true;
         async function ShowCats() {
             try {
                 const catList = await api.SearchCats();
-                console.log(catList);
                 if (Mounted) {
-                    setCats(catList as Cat[]);
+                    setCats(catList);
                 }
             } catch (error: any) {
                 return Alert.alert('Erro ao buscar a lista de gatos', error.message);
@@ -45,6 +38,10 @@ export function Home() {
             Mounted = false;
         }
     }, [])
+    function handleCatCard() {
+        console.log('AQUI PORRAAAAAAAAAAAAAAAA')
+        navigation.navigate('Cat');
+    }
     return (
         <Container>
             <StatusBar
@@ -61,7 +58,7 @@ export function Home() {
                     data={cats}
                     keyExtractor={(item: Cat) => item.id}
                     renderItem={({ item }: any) =>
-                        <CatCard data={item} onPress={() => handleCatCard(item)} />}
+                        <CatCard data={item}  onPress={() => handleCatCard()} />}
                 />
             }
         </Container>

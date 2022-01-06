@@ -11,7 +11,8 @@ export function AppStackRoutes() {
             <Screen
                 name="Home"
                 options={{
-                    headerShown: false
+                    headerShown: false,
+                    gestureEnabled: false
                 }}
                 component={Home}
             />

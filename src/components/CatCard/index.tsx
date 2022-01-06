@@ -9,14 +9,16 @@ import {
 } from './styles';
 interface CatCardProps extends RectButtonProps {
     data: Cat;
+
 }
 export function CatCard({ data, ...rest }: CatCardProps) {
+
     return (
         <Container  {...rest} >
             <Image source={{ uri: data?.image?.url }} width={data?.image?.width} height={data?.image?.height} resizeMode="contain" />
             <DataContainer>
-                <Name> {data.name} </Name>
-                <Description> {data.description} </Description>
+                <Name> {data?.name} </Name>
+                <Description> {data?.description} </Description>
             </DataContainer>
         </Container>
     );
