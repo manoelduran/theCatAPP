@@ -47,3 +47,7 @@ interface Cat {
     }
 };
 
+interface Breed{
+    cats: Cat[]
+}
+

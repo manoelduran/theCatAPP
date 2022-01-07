@@ -18,30 +18,27 @@ export function Home() {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        let Mounted = true;
         async function ShowCats() {
             try {
                 const catList = await api.SearchCats();
-                if (Mounted) {
                     setCats(catList);
-                }
+
             } catch (error: any) {
                 return Alert.alert('Erro ao buscar a lista de gatos', error.message);
             } finally {
-                if (Mounted) {
                     setLoading(false);
-                }
+
             }
         };
         ShowCats();
-        return () => {
-            Mounted = false;
-        }
     }, [])
-    function handleCatCard() {
+    function handleCatCard(cat: Cat) {
         console.log('AQUI PORRAAAAAAAAAAAAAAAA')
-        navigation.navigate('Cat');
+        navigation.navigate('Cat', {
+            cat
+        });
     }
+
     return (
         <Container>
             <StatusBar
@@ -58,7 +55,7 @@ export function Home() {
                     data={cats}
                     keyExtractor={(item: Cat) => item.id}
                     renderItem={({ item }: any) =>
-                        <CatCard data={item}  onPress={() => handleCatCard()} />}
+                        <CatCard data={item} onPress={() => handleCatCard(item)} />}
                 />
             }
         </Container>

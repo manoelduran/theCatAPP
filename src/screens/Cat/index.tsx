@@ -12,10 +12,10 @@ export function Cat(){
     const navigation = useNavigation<any>();
     const route = useRoute();
     const theme = useTheme();
-    const { cat } = route.params as Params;
+    const {cat } = route.params as Params;
     return (
         <Container>
-            <Text>TESTANDO</Text>
+            <Text> {cat.name} </Text>
         </Container>
     );
 }

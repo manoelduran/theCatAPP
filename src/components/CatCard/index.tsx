@@ -1,5 +1,4 @@
 import React from 'react';
-import { RectButtonProps } from 'react-native-gesture-handler';
 import {
     Container,
     Image,
@@ -7,14 +6,14 @@ import {
     Name,
     Description,
 } from './styles';
-interface CatCardProps extends RectButtonProps {
+interface CatCardProps {
     data: Cat;
-
+    onPress: () => void;
 }
-export function CatCard({ data, ...rest }: CatCardProps) {
+export function CatCard({ data, onPress}: CatCardProps) {
 
     return (
-        <Container  {...rest} >
+        <Container onPress={onPress}  >
             <Image source={{ uri: data?.image?.url }} width={data?.image?.width} height={data?.image?.height} resizeMode="contain" />
             <DataContainer>
                 <Name> {data?.name} </Name>
