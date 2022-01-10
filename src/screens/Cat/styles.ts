@@ -14,3 +14,7 @@ align-self: flex-start;
 width: 100%;
 height: 100px;
 `;
+
+export const Button = styled.Button`
+
+`;

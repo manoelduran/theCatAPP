@@ -11,6 +11,7 @@ import { SearchInput } from '../../components/SearchInput';
 import { LoadAnimation } from '../../components/LoadAnimation';
 import { CatCard } from '../../components/CatCard';
 import { useNavigation } from '@react-navigation/native';
+import { useCat } from '../../hooks/CatContext';
 
 export function Home() {
     const [cats, setCats] = useState<Cat[]>([]);

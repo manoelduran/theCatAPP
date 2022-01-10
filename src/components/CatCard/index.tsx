@@ -4,7 +4,7 @@ import {
     Image,
     DataContainer,
     Name,
-    Description,
+    Description
 } from './styles';
 interface CatCardProps {
     data: Cat;
@@ -19,6 +19,7 @@ export function CatCard({ data, onPress}: CatCardProps) {
                 <Name> {data?.name} </Name>
                 <Description> {data?.description} </Description>
             </DataContainer>
+
         </Container>
     );
 }
