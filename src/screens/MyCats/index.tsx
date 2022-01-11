@@ -1,5 +1,5 @@
 import { useNavigation } from '@react-navigation/native';
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { CatCard } from '../../components/CatCard';
 import { LoadAnimation } from '../../components/LoadAnimation';
 import { useCat } from '../../hooks/CatContext';
@@ -12,7 +12,6 @@ import {
 
 export function MyCats() {
     const { favoriteCats, loading, removeCat } = useCat();
-    console.log(favoriteCats)
     const navigation = useNavigation<any>();
     function handleCatCard(cat: Cat) {
         console.log('AQUI PORRAAAAAAAAAAAAAAAA')
@@ -24,12 +23,16 @@ export function MyCats() {
         <Container>
             <Text>ola</Text>
             {loading ? <LoadAnimation /> :
-                <CatList
+                <>
+                {favoriteCats ? <>
+                    <CatList
                     data={favoriteCats}
                     keyExtractor={(item: Cat) => item.id}
                     renderItem={({ item }: any) =>
                         <CatCard data={item} onPress={() => handleCatCard(item)} />}
                 />
+                </> : <Text>NADA</Text>}
+                </>
             }
        <Button title='REMOVER' onPress={() => removeCat}>REMOVER</Button>
         </Container>

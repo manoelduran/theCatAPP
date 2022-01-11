@@ -14,11 +14,10 @@ interface Params {
     cat: Cat;
 };
 export function Cat() {
-    const {favoriteCat} = useCat();
-    const navigation = useNavigation();
     const route = useRoute();
-    const theme = useTheme();
     const { cat } = route.params as Params;
+    const { favoriteCat } = useCat();
+    const navigation = useNavigation();
     function handleBack() {
         navigation.goBack();
     };
@@ -38,7 +37,7 @@ export function Cat() {
             <Text> {cat.temperament} </Text>
             <Text> {cat.stranger_friendly} </Text>
             <Text> {cat.wikipedia_url} </Text>
-            <Button title='FAVORITAR' onPress={() => favoriteCat}>FAVORITAR</Button>
+            <Button title='FAVORITAR' onPress={ () => favoriteCat(cat)}>FAVORITAR</Button>
         </Container>
     );
 }

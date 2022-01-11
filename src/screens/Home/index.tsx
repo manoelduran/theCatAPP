@@ -14,24 +14,18 @@ import { useNavigation } from '@react-navigation/native';
 import { useCat } from '../../hooks/CatContext';
 
 export function Home() {
-    const [cats, setCats] = useState<Cat[]>([]);
+    const {cats, showCats} = useCat();
     const navigation = useNavigation<any>();
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        async function ShowCats() {
-            try {
-                const catList = await api.SearchCats();
-                    setCats(catList);
-
-            } catch (error: any) {
-                return Alert.alert('Erro ao buscar a lista de gatos', error.message);
-            } finally {
-                    setLoading(false);
-
-            }
-        };
-        ShowCats();
+        try{
+            showCats();
+        } catch(error){
+            throw new Error(error as string)
+        } finally{
+            setLoading(false)
+        }
     }, [])
     function handleCatCard(cat: Cat) {
         console.log('AQUI PORRAAAAAAAAAAAAAAAA')

@@ -10,6 +10,7 @@ import {
 import { ThemeProvider } from 'styled-components/native';
 import theme from './src/styles/theme';
 import { Routes } from './src/routes';
+import { CatProvider } from './src/hooks/CatContext';
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -21,8 +22,10 @@ export default function App() {
     return <AppLoading />
   }
   return (
+   <CatProvider>
     <ThemeProvider theme={theme}>
       <Routes/>
     </ThemeProvider>
+   </CatProvider>
   );
 }

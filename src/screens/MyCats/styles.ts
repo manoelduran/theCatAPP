@@ -8,6 +8,7 @@ flex: 1;
 export const Text = styled.Text`
 `;
 
+
 export const CatList = styled(FlatList as new () => FlatList<Cat[]>).attrs({
     contentContainerStyle: {
         padding: 24

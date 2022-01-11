@@ -11,32 +11,48 @@ interface CatContextData {
     cats: Cat[];
     favoriteCats: Cat[];
     loading: boolean;
-    favoriteCat: (id: string) => Promise<void>;
-    removeCat: (id: string) => Promise<void>;
+    showCats: () => Promise<void>;
+    favoriteCat: (cat: Cat) => Promise<void>;
+    removeCat: (cat: Cat) => Promise<void>;
 }
 const CatContext = createContext({} as CatContextData);
 
 function CatProvider({ children }: CatProviderProps) {
     const [cats, setCats] = useState<Cat[]>([]);
-    const [favoriteCats, setFavoriteCats] = useState<Cat[]>(JSON.parse(String(AsyncStorage.getItem('@favoriteCats'))!) ?? []);
+    const [favoriteCats, setFavoriteCats] = useState<Cat[]>([] as Cat[]);
     const [loading, setLoading] = useState(true);
-
-    async function favoriteCat(id: string) {
+    async function showCats() {
         try {
-            const addCat = await cats.find((cat: Cat) => cat.id === id);
-            await AsyncStorage.setItem('@favoriteCats', JSON.stringify(addCat))
-            setFavoriteCats((prevState) => ({ ...prevState, favoriteCats: addCat }))
+            const catList = await api.SearchCats();
+            setCats(catList);
+        } catch (error: any) {
+            return Alert.alert('Erro ao buscar a lista de gatos', error.message);
+        } finally {
+            setLoading(false);
+
+        }
+    };
+
+    async function favoriteCat(cat: Cat) {
+        try {
+            const updatedCat = [...favoriteCats]
+            const catExists = updatedCat.find(cat => cat.id === cat.id);
+            if(catExists){
+                catExists === cat
+            } 
+            updatedCat.push(cat);
+           await AsyncStorage.setItem('favoriteCats', JSON.stringify(updatedCat));
+            setFavoriteCats(updatedCat)
         } catch (error) {
             throw new Error(error as string);
         } finally {
             setLoading(false);
         }
     };
-    async function removeCat(id: string) {
+    async function removeCat(cat: Cat) {
         try {
-            const removeCat = await favoriteCats.filter((cat: Cat) => cat.id !== id)
-            AsyncStorage.setItem('@favoriteCats', JSON.stringify(removeCat));
-            setFavoriteCats(removeCat);
+           await AsyncStorage.removeItem('favoriteCats');
+           setFavoriteCats([] as Cat[])
         } catch (error) {
             throw new Error(error as string);
         } finally {
@@ -46,7 +62,7 @@ function CatProvider({ children }: CatProviderProps) {
 
 
     return (
-        <CatContext.Provider value={{ cats, favoriteCat, favoriteCats, loading, removeCat }}>
+        <CatContext.Provider value={{ cats, showCats, favoriteCat, favoriteCats, loading, removeCat }}>
             {children}
         </CatContext.Provider>
     )
@@ -57,6 +73,6 @@ function useCat(): CatContextData {
     return context
 }
 
-export { CatProvider, useCat}
+export { CatProvider, useCat }
 
 

@@ -47,7 +47,7 @@ interface Cat {
     }
 };
 
-interface Breed{
-    cats: Cat[]
+interface FavoriteProps {
+    cat: Cat;
 }
 
