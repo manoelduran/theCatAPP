@@ -1,5 +1,5 @@
 import { useNavigation } from '@react-navigation/native';
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { CatCard } from '../../components/CatCard';
 import { LoadAnimation } from '../../components/LoadAnimation';
@@ -9,13 +9,11 @@ import {
     Header,
     Title,
     Subtitle,
-    CatList,
-    Button
+    CatList
 } from './styles';
 
 export function MyCats() {
-    const { removeCat } = useCat();
-    const [catFavoriteList, setCatFavoriteList] = useState<Cat[]>([] as Cat[] ?? null)
+    const [catList, setCatList] = useState<Cat[]>([] as Cat[] ?? null);
     const [loading, setLoading] = useState(true);
     useEffect(() => {
         let isMounted = true;
@@ -23,18 +21,21 @@ export function MyCats() {
             try {
                 const catsFavorite = await AsyncStorage.getItem('@CatsFavorite');
                 if (isMounted) {
-                    setCatFavoriteList(catsFavorite !== null ? JSON.parse(catsFavorite) : null);
+                    setCatList(catsFavorite !== null ? JSON.parse(catsFavorite) : null);
                 }
             } catch (error) {
-                throw new Error(error as string);
+                throw new Error(error as string)
             } finally {
                 if (isMounted) {
-                    setLoading(false);
+                    setLoading(false)
                 }
             }
         }
-        showFavorites()
-    }, [])
+        showFavorites();
+        return () => {
+            isMounted = false;
+        };
+    }, [catList]);
     const navigation = useNavigation<any>();
     function handleCatCard(cat: Cat) {
         navigation.navigate('Cat', {
@@ -47,18 +48,18 @@ export function MyCats() {
                 <Title>MiauPP</Title>
             </Header>
             <Subtitle>Favorites Cats</Subtitle>
-            {loading ?
-                <LoadAnimation />
-                :
-                <CatList
-                    data={catFavoriteList}
-                    keyExtractor={(item: Cat) => item.id}
-                    renderItem={({ item }: any) =>
-                        <CatCard data={item} onPress={() => handleCatCard(item)} />}
-                />
+            {loading ? <LoadAnimation /> :
+                <>
+                    {catList ? <>
+                        <CatList
+                            data={catList}
+                            keyExtractor={(item: Cat) => item.id}
+                            renderItem={({ item }: any) =>
+                                <CatCard data={item} onPress={() => handleCatCard(item)} />}
+                        />
+                    </> : null}
+                </>
             }
-
-            <Button title='REMOVER' onPress={() => removeCat()}>REMOVER</Button>
         </Container>
     )
 }
