@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { TextInputProps } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 import {
     Container,
@@ -7,7 +8,14 @@ import {
     InputText,
 } from './styles';
 
-export function SearchInput() {
+interface SearchInputProps{
+value: string;
+onChangeText: () => void;
+}
+
+export function SearchInput({value, onChangeText}: SearchInputProps) {
+    const [search, setSearch] = useState(value);
+
     return (
         <Container>
             <IconContainer>
@@ -18,7 +26,8 @@ export function SearchInput() {
             </IconContainer>
             <Separator />
             <InputText
-
+                value={search}
+                onChangeText={setSearch}
             />
         </Container>
     );

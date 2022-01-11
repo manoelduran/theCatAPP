@@ -36,7 +36,7 @@ function CatProvider({ children }: CatProviderProps) {
     async function favoriteCat(cat: Cat) {
         try {
             const updatedCat = [...catsFavorite];
-            const newCat = cat
+            const newCat = cat;
             updatedCat.push(newCat);
             await setItem(JSON.stringify(updatedCat));
             setCatsFavorite(updatedCat);

@@ -4,6 +4,7 @@ import {
     Container,
     Header,
     Title,
+    Subtitle,
     CatList
 } from './styles';
 import * as api from '../../services/api';
@@ -41,9 +42,10 @@ export function Home() {
                 translucent
             />
             <Header>
-                <Title>CAT APP</Title>
+                <Title>MiauPP</Title>
             </Header>
-            <SearchInput />
+            <Subtitle>Search by Breed</Subtitle>
+            <SearchInput value='' onChangeText={() => {}}/>
             {loading ? <LoadAnimation /> :
                 <CatList
                     data={cats}
