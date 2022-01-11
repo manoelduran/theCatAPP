@@ -19,8 +19,8 @@ const CatContext = createContext({} as CatContextData);
 
 function CatProvider({ children }: CatProviderProps) {
     const [cats, setCats] = useState<Cat[]>([]);
-    const [ catsFavorite, setCatsFavorite] = useState<Cat[]>([] as Cat[])
-    const { getItem, setItem, removeItem } = useAsyncStorage('@CatsFavorite');
+    const [catsFavorite, setCatsFavorite] = useState<Cat[]>([] as Cat[])
+    const { getItem ,setItem, removeItem } = useAsyncStorage('@CatsFavorite');
     const [loading, setLoading] = useState(true);
     async function showCats() {
         try {
@@ -48,8 +48,8 @@ function CatProvider({ children }: CatProviderProps) {
     };
     async function removeCat() {
         try {
-            await AsyncStorage.removeItem('@favoriteCats');
-            setCats([] as Cat[])
+             await removeItem()
+            setCatsFavorite([] as Cat[])
         } catch (error) {
             throw new Error(error as string);
         } finally {
@@ -59,7 +59,7 @@ function CatProvider({ children }: CatProviderProps) {
 
 
     return (
-        <CatContext.Provider value={{ cats, showCats, catsFavorite,favoriteCat,loading, removeCat }}>
+        <CatContext.Provider value={{ cats, showCats, catsFavorite, favoriteCat, loading, removeCat }}>
             {children}
         </CatContext.Provider>
     )

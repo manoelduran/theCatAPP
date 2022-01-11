@@ -42,7 +42,7 @@ export function MyCats() {
                     </> : <Text>NADA</Text>}
                 </>
             }
-            <Button title='REMOVER' onPress={() => removeCat}>REMOVER</Button>
+            <Button title='REMOVER' onPress={() => removeCat()}>REMOVER</Button>
         </Container>
     )
 }
