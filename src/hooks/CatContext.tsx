@@ -1,5 +1,5 @@
-import React, { createContext, FormEvent, ReactNode, useContext, useState } from 'react';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import React, { createContext, ReactNode, useContext, useState } from 'react';
+import AsyncStorage, { useAsyncStorage } from '@react-native-async-storage/async-storage';
 import * as api from '../services/api';
 import { Alert } from 'react-native';
 
@@ -9,17 +9,18 @@ interface CatProviderProps {
 
 interface CatContextData {
     cats: Cat[];
-    favoriteCats: Cat[];
+    catsFavorite: Cat[];
     loading: boolean;
     showCats: () => Promise<void>;
     favoriteCat: (cat: Cat) => Promise<void>;
-    removeCat: (cat: Cat) => Promise<void>;
+    removeCat: () => Promise<void>;
 }
 const CatContext = createContext({} as CatContextData);
 
 function CatProvider({ children }: CatProviderProps) {
     const [cats, setCats] = useState<Cat[]>([]);
-    const [favoriteCats, setFavoriteCats] = useState<Cat[]>([] as Cat[]);
+    const [ catsFavorite, setCatsFavorite] = useState<Cat[]>([] as Cat[])
+    const { getItem, setItem, removeItem } = useAsyncStorage('@CatsFavorite');
     const [loading, setLoading] = useState(true);
     async function showCats() {
         try {
@@ -32,27 +33,23 @@ function CatProvider({ children }: CatProviderProps) {
 
         }
     };
-
     async function favoriteCat(cat: Cat) {
         try {
-            const updatedCat = [...favoriteCats]
-            const catExists = updatedCat.find(cat => cat.id === cat.id);
-            if(catExists){
-                catExists === cat
-            } 
-            updatedCat.push(cat);
-           await AsyncStorage.setItem('favoriteCats', JSON.stringify(updatedCat));
-            setFavoriteCats(updatedCat)
+            const updatedCat = [...catsFavorite];
+            const newCat = cat
+            updatedCat.push(newCat);
+            await setItem(JSON.stringify(updatedCat));
+            setCatsFavorite(updatedCat);
         } catch (error) {
             throw new Error(error as string);
         } finally {
             setLoading(false);
         }
     };
-    async function removeCat(cat: Cat) {
+    async function removeCat() {
         try {
-           await AsyncStorage.removeItem('favoriteCats');
-           setFavoriteCats([] as Cat[])
+            await AsyncStorage.removeItem('@favoriteCats');
+            setCats([] as Cat[])
         } catch (error) {
             throw new Error(error as string);
         } finally {
@@ -62,7 +59,7 @@ function CatProvider({ children }: CatProviderProps) {
 
 
     return (
-        <CatContext.Provider value={{ cats, showCats, favoriteCat, favoriteCats, loading, removeCat }}>
+        <CatContext.Provider value={{ cats, showCats, catsFavorite,favoriteCat,loading, removeCat }}>
             {children}
         </CatContext.Provider>
     )

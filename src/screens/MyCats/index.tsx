@@ -1,5 +1,6 @@
 import { useNavigation } from '@react-navigation/native';
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { CatCard } from '../../components/CatCard';
 import { LoadAnimation } from '../../components/LoadAnimation';
 import { useCat } from '../../hooks/CatContext';
@@ -11,10 +12,17 @@ import {
 } from './styles';
 
 export function MyCats() {
-    const { favoriteCats, loading, removeCat } = useCat();
+    const { loading, removeCat } = useCat();
+     const [test, setTest] = useState<Cat[]>([] as Cat[] ?? null)
+     useEffect(() => {
+         async function showFavorites() {
+          const catsFavorite = await AsyncStorage.getItem('@CatsFavorite');
+          setTest(catsFavorite !== null ? JSON.parse(catsFavorite) : null)
+         }
+         showFavorites()
+     }, [test])
     const navigation = useNavigation<any>();
     function handleCatCard(cat: Cat) {
-        console.log('AQUI PORRAAAAAAAAAAAAAAAA')
         navigation.navigate('Cat', {
             cat
         });
@@ -24,17 +32,17 @@ export function MyCats() {
             <Text>ola</Text>
             {loading ? <LoadAnimation /> :
                 <>
-                {favoriteCats ? <>
-                    <CatList
-                    data={favoriteCats}
-                    keyExtractor={(item: Cat) => item.id}
-                    renderItem={({ item }: any) =>
-                        <CatCard data={item} onPress={() => handleCatCard(item)} />}
-                />
-                </> : <Text>NADA</Text>}
+                    {test ? <>
+                        <CatList
+                            data={test}
+                            keyExtractor={(item: Cat) => item.id}
+                            renderItem={({ item }: any) =>
+                                <CatCard data={item} onPress={() => handleCatCard(item)} />}
+                        />
+                    </> : <Text>NADA</Text>}
                 </>
             }
-       <Button title='REMOVER' onPress={() => removeCat}>REMOVER</Button>
+            <Button title='REMOVER' onPress={() => removeCat}>REMOVER</Button>
         </Container>
     )
 }

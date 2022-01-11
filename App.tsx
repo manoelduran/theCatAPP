@@ -1,5 +1,4 @@
 import React from 'react';
-import { Home } from './src/screens/Home';
 import AppLoading from 'expo-app-loading';
 import {
   useFonts,

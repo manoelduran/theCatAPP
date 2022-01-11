@@ -28,7 +28,6 @@ export function Home() {
         }
     }, [])
     function handleCatCard(cat: Cat) {
-        console.log('AQUI PORRAAAAAAAAAAAAAAAA')
         navigation.navigate('Cat', {
             cat
         });
