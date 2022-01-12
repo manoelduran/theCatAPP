@@ -19,7 +19,7 @@ const CatContext = createContext({} as CatContextData);
 
 function CatProvider({ children }: CatProviderProps) {
     const [cats, setCats] = useState<Cat[]>([]);
-    const [catsFavorite, setCatsFavorite] = useState<Cat[]>([] as Cat[])
+    const [catsFavorite, setCatsFavorite] = useState<Cat[]>([] as Cat[]);
     const { setItem, removeItem } = useAsyncStorage('@CatsFavorite');
     const [loading, setLoading] = useState(true);
     async function showCats() {

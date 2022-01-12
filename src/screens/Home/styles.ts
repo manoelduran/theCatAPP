@@ -13,7 +13,7 @@ width: 100%;
 height: 250px;
 background-color: ${({ theme }) => theme.colors.header};
 justify-content: center;
-padding: 25px;
+padding: 24px;
 padding-top: ${getStatusBarHeight() + 30}px;
 `;
 

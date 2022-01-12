@@ -9,10 +9,12 @@ import {
     Header,
     Title,
     Subtitle,
-    CatList
+    CatList,
+    Button
 } from './styles';
 
 export function MyCats() {
+    const { removeCat } = useCat();
     const [catList, setCatList] = useState<Cat[]>([] as Cat[] ?? null);
     const [loading, setLoading] = useState(true);
     useEffect(() => {
@@ -57,7 +59,9 @@ export function MyCats() {
                             renderItem={({ item }: any) =>
                                 <CatCard data={item} onPress={() => handleCatCard(item)} />}
                         />
-                    </> : null}
+                        <Button title='Limpar Favoritos ' onPress={() => removeCat()} />
+                    </>
+                        : null}
                 </>
             }
         </Container>

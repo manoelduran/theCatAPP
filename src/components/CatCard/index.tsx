@@ -17,9 +17,8 @@ export function CatCard({ data, onPress}: CatCardProps) {
             <Image source={{ uri: data?.image?.url }} width={data?.image?.width} height={data?.image?.height} resizeMode="contain" />
             <DataContainer>
                 <Name> {data?.name} </Name>
-                <Description> {data?.description} </Description>
+                <Description> {data?.description}</Description>
             </DataContainer>
-
         </Container>
     );
 }

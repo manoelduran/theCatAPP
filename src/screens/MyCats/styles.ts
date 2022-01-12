@@ -38,3 +38,7 @@ export const CatList = styled(FlatList as new () => FlatList<Cat[]>).attrs({
     showsVerticalScrollIndicator: false
 })`
 `;
+
+export const Button = styled.Button`
+
+`;
