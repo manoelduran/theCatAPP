@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Alert, BackHandler, StatusBar } from 'react-native';
+import { BackHandler, StatusBar } from 'react-native';
 import {
     Container,
     Header,
@@ -18,16 +18,22 @@ export function Home() {
     const { cats, showCats } = useCat();
     const navigation = useNavigation<any>();
     const [loading, setLoading] = useState(true);
-
+    const [search, setSearch] = useState('');
+    const result = cats.find(cat => cat.name === search);
+    const catSearched = result as Cat;
     useEffect(() => {
         try {
-            showCats();
+            if(search) {
+                return 
+            } else {
+                showCats();
+            }
         } catch (error) {
             throw new Error(error as string)
         } finally {
             setLoading(false)
         }
-    }, []);
+    }, [search]);
     useEffect(() => {
         BackHandler.addEventListener('hardwareBackPress', () => {
             return true;
@@ -38,11 +44,10 @@ export function Home() {
             cat
         });
     }
-
     return (
         <Container>
             <StatusBar
-                barStyle='dark-content'
+                barStyle='light-content'
                 backgroundColor='transparent'
                 translucent
             />
@@ -50,14 +55,25 @@ export function Home() {
                 <Title>MiauPP</Title>
             </Header>
             <Subtitle>Search by Breed</Subtitle>
-            <SearchInput value='' onChangeText={() => { }} />
+            <SearchInput value={search} onChangeText={(search) => setSearch(search)} />
             {loading ? <LoadAnimation /> :
-                <CatList
-                    data={cats}
-                    keyExtractor={(item: Cat) => item.id}
-                    renderItem={({ item }: any) =>
-                        <CatCard data={item} onPress={() => handleCatCard(item)} />}
-                />
+                <>
+                    {catSearched ?
+                        <CatList
+                            data={catSearched}
+                            keyExtractor={(item: Cat) => item.id}
+                            renderItem={({ item }: any) =>
+                                <CatCard data={item} onPress={() => handleCatCard(item)} />}
+                        />
+                        :
+                        <CatList
+                            data={cats}
+                            keyExtractor={(item: Cat) => item.id}
+                            renderItem={({ item }: any) =>
+                                <CatCard data={item} onPress={() => handleCatCard(item)} />}
+                        />
+                    }
+                </>
             }
         </Container>
     )

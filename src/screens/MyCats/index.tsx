@@ -12,6 +12,7 @@ import {
     CatList,
     Button
 } from './styles';
+import { StatusBar } from 'react-native';
 
 export function MyCats() {
     const { removeCat } = useCat();
@@ -46,6 +47,11 @@ export function MyCats() {
     }
     return (
         <Container>
+                     <StatusBar
+                barStyle='light-content'
+                backgroundColor='transparent'
+                translucent
+            />
             <Header>
                 <Title>MiauPP</Title>
             </Header>

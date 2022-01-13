@@ -23,7 +23,7 @@ import { BackButton } from '../../components/BackButton';
 import { useCat } from '../../hooks/CatContext';
 import { AirbnbRating } from 'react-native-ratings';
 import { useTheme } from 'styled-components/native';
-import { Linking } from 'react-native';
+import { Linking, StatusBar } from 'react-native';
 interface Params {
     cat: Cat;
 };
@@ -41,11 +41,16 @@ export function Cat() {
     }
     return (
         <Container>
+                     <StatusBar
+                barStyle='light-content'
+                backgroundColor='transparent'
+                translucent
+            />
             <Header>
                 <BackButton
                     onPress={handleBack}
                 />
-                <Title>Everything you need to konw about '{cat.name}'  breed</Title>
+                <Title>Everything you need to know about '{cat.name}'  breed</Title>
             </Header>
             <Content>
                 <Image source={{ uri: cat?.image?.url }} width={cat?.image?.width} height={cat?.image?.height} resizeMode="contain" />

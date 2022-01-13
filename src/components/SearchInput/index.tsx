@@ -8,13 +8,20 @@ import {
     InputText,
 } from './styles';
 
-interface SearchInputProps{
-value: string;
-onChangeText: () => void;
+interface SearchInputProps {
+    value: string;
+    onChangeText: (text: string) => void;
 }
 
-export function SearchInput({value, onChangeText}: SearchInputProps) {
+export function SearchInput({ value, onChangeText }: SearchInputProps) {
     const [search, setSearch] = useState(value);
+
+    function handleSearch(text: string) {
+        setSearch(text);
+        setTimeout(() => {
+            onChangeText(text);
+        }, 1000);
+    };
 
     return (
         <Container>
@@ -27,7 +34,7 @@ export function SearchInput({value, onChangeText}: SearchInputProps) {
             <Separator />
             <InputText
                 value={search}
-                onChangeText={setSearch}
+                onChangeText={(text: string) => handleSearch(text)}
             />
         </Container>
     );
