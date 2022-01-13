@@ -36,8 +36,8 @@ export function Cat() {
     function handleBack() {
         navigation.goBack();
     };
-   async function handleLink(wikipedia_url: string){
-    await Linking.openURL(wikipedia_url)
+    async function handleLink(wikipedia_url: string) {
+        await Linking.openURL(wikipedia_url)
     }
     return (
         <Container>
@@ -51,11 +51,11 @@ export function Cat() {
                 <Image source={{ uri: cat?.image?.url }} width={cat?.image?.width} height={cat?.image?.height} resizeMode="contain" />
                 <Details>
                     <Origin> {cat.origin} </Origin>
-                    {catsFavorite.find(catFavorite => catFavorite.id === cat.id) 
-                    ?
-                     <Icon  name='star' size={30} active={true} onPress={ () => removeCat() } />
-                     :
-                     <Icon  name='star' size={30} active={false} onPress={ () => favoriteCat(cat) } />
+                    {catsFavorite.find(catFavorite => catFavorite.id === cat.id)
+                        ?
+                        <Icon name='star' size={30} active={true} onPress={() => removeCat()} />
+                        :
+                        <Icon name='star' size={30} active={false} onPress={() => favoriteCat(cat)} />
                     }
                 </Details>
                 <Name> {cat.name} </Name>
@@ -185,7 +185,7 @@ export function Cat() {
                 </LevelDiv>
             </Content>
             <Footer>
-                <Button title='WIKIPEDIA'  onPress={() => handleLink(cat.wikipedia_url)} />
+                <Button title='WIKIPÉDIA' onPress={() => handleLink(cat.wikipedia_url)} />
             </Footer>
         </Container>
     );

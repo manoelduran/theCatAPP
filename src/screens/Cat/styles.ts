@@ -2,9 +2,10 @@ import { getBottomSpace, getStatusBarHeight } from "react-native-iphone-x-helper
 import { RFValue } from "react-native-responsive-fontsize";
 import { Feather } from '@expo/vector-icons';
 import styled from "styled-components/native";
+import { RectButton, TouchableOpacity } from "react-native-gesture-handler";
 interface LabelProps {
     active: boolean;
-  }
+}
 export const Container = styled.View`
 flex: 1;
 `;
@@ -30,7 +31,7 @@ align-self: flex-start;
 width: 100%;
 height: 100px;
 `;
-export const Content= styled.ScrollView`
+export const Content = styled.ScrollView`
 padding: 0px 24px;
 `;
 export const Details = styled.View`
@@ -44,9 +45,9 @@ font-size: ${RFValue(15)}px;
 font-family: ${({ theme }) => theme.fonts.medium};
 color: ${({ theme }) => theme.colors.title};
 `;
-export const Icon = styled(Feather)<LabelProps>`
+export const Icon = styled(Feather) <LabelProps>`
 margin-left: 15px;
-color: ${({ active ,theme }) => active ? theme.colors.header : theme.colors.title}; 
+color: ${({ active, theme }) => active ? theme.colors.header : theme.colors.title}; 
 `;
 
 export const Name = styled.Text`
@@ -66,7 +67,7 @@ export const Separator = styled.View`
 margin-top: 10px;
 width: 100%;
 height: 2px;
-background-color: ${({theme}) => theme.colors.header};
+background-color: ${({ theme }) => theme.colors.header};
 `;
 export const Temperament = styled.Text`
 margin-top: 10px;
@@ -89,8 +90,8 @@ export const Footer = styled.View`
     width: 100%;
     padding: 24px 24px;
     padding-bottom: ${getBottomSpace() + 24}px;
+    background: transparent;
 `;
 
 export const Button = styled.Button`
-
 `;

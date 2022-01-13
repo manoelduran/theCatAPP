@@ -10,7 +10,7 @@ interface CatCardProps {
     data: Cat;
     onPress: () => void;
 }
-export function CatCard({ data, onPress}: CatCardProps) {
+export function CatCard({ data, onPress }: CatCardProps) {
 
     return (
         <Container onPress={onPress}  >

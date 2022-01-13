@@ -23,13 +23,13 @@ export const Name = styled.Text`
 margin-top: 10px;
 font-size: ${RFValue(10)}px;
 font-family: ${({ theme }) => theme.fonts.medium};
-color: ${({ theme }) => theme.colors.header};
+color: ${({ theme }) => theme.colors.title};
 text-transform: uppercase;
 `;
 export const Description = styled.Text`
 font-size: ${RFValue(10)}px;
 font-family: ${({ theme }) => theme.fonts.regular};
-color: ${({ theme }) => theme.colors.header};
+color: ${({ theme }) => theme.colors.title};
 text-align: justify;
 margin-top: 15px;
 
