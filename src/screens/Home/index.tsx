@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Alert, StatusBar } from 'react-native';
+import { Alert, BackHandler, StatusBar } from 'react-native';
 import {
     Container,
     Header,
@@ -15,19 +15,24 @@ import { useNavigation } from '@react-navigation/native';
 import { useCat } from '../../hooks/CatContext';
 
 export function Home() {
-    const {cats, showCats} = useCat();
+    const { cats, showCats } = useCat();
     const navigation = useNavigation<any>();
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        try{
+        try {
             showCats();
-        } catch(error){
+        } catch (error) {
             throw new Error(error as string)
-        } finally{
+        } finally {
             setLoading(false)
         }
-    }, [])
+    }, []);
+    useEffect(() => {
+        BackHandler.addEventListener('hardwareBackPress', () => {
+            return true;
+        })
+    }, []) // faz n voltar para a tela de splash
     function handleCatCard(cat: Cat) {
         navigation.navigate('Cat', {
             cat
@@ -45,7 +50,7 @@ export function Home() {
                 <Title>MiauPP</Title>
             </Header>
             <Subtitle>Search by Breed</Subtitle>
-            <SearchInput value='' onChangeText={() => {}}/>
+            <SearchInput value='' onChangeText={() => { }} />
             {loading ? <LoadAnimation /> :
                 <CatList
                     data={cats}
