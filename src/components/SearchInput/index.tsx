@@ -10,19 +10,19 @@ import {
 
 interface SearchInputProps {
     value: string;
-    onChangeText: (text: string) => void;
+    onChangeText: (search: string) => void;
 }
 
 export function SearchInput({ value, onChangeText }: SearchInputProps) {
-    const [search, setSearch] = useState(value);
+    const [displaySearch, setDisplaySearch] = useState(value);
 
-    function handleSearch(text: string) {
-        setSearch(text);
+    function handleSearch(search: string) {
+        console.log(search)
+        setDisplaySearch(search);
         setTimeout(() => {
-            onChangeText(text);
-        }, 1000);
+            setTimeout(() =>  onChangeText(search), 2000);
+        }, 2000);
     };
-
     return (
         <Container>
             <IconContainer>
@@ -33,8 +33,8 @@ export function SearchInput({ value, onChangeText }: SearchInputProps) {
             </IconContainer>
             <Separator />
             <InputText
-                value={search}
-                onChangeText={(text: string) => handleSearch(text)}
+                value={displaySearch}
+                onChangeText={(search) => handleSearch(search)}
             />
         </Container>
     );

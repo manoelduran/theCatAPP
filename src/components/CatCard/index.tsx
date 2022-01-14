@@ -1,4 +1,5 @@
 import React from 'react';
+import { useCat } from '../../hooks/CatContext';
 import {
     Container,
     Image,
@@ -11,10 +12,15 @@ interface CatCardProps {
     onPress: () => void;
 }
 export function CatCard({ data, onPress }: CatCardProps) {
-
+    const { cats } = useCat();
+    const findedImage = cats.find(cat => cat.id === data.id)
     return (
         <Container onPress={onPress}  >
-            <Image source={{ uri: data?.image?.url }} width={data?.image?.width} height={data?.image?.height} resizeMode="contain" />
+            {findedImage ?
+                <Image source={{ uri: findedImage.image.url }} width={findedImage.image.width} height={findedImage.image.height} resizeMode="contain" />
+                :
+                null
+            }
             <DataContainer>
                 <Name> {data?.name} </Name>
                 <Description> {data?.description}</Description>

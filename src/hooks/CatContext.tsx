@@ -33,6 +33,7 @@ function CatProvider({ children }: CatProviderProps) {
 
         }
     };
+
     async function favoriteCat(cat: Cat) {
         try {
             const updatedCat = [...catsFavorite];

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { BackHandler, StatusBar } from 'react-native';
+import { Alert, BackHandler, StatusBar } from 'react-native';
 import {
     Container,
     Header,
@@ -16,23 +16,43 @@ import { useCat } from '../../hooks/CatContext';
 
 export function Home() {
     const { cats, showCats } = useCat();
+    const [catsSearched, setCatsSearched] = useState<Cat[]>([]);
     const navigation = useNavigation<any>();
-    const [loading, setLoading] = useState(true);
     const [search, setSearch] = useState('');
-    const result = cats.find(cat => cat.name === search);
-    const catSearched = result as Cat;
-    useEffect(() => {
+    const [loading, setLoading] = useState(true);
+    async function showCatId(search: string) {
+        console.log(search);
         try {
-            if(search) {
-                return 
+            const catList = await api.SearchCatById(search);
+            setCatsSearched(catList);
+        } catch (error: any) {
+            return Alert.alert('Erro ao buscar a lista de gatos', error.message);
+        } finally {
+            setLoading(false);
+        }
+    };
+    useEffect(() => {
+        let isMounted = true;
+        try {
+            if (search) {
+                if (isMounted) {
+                    showCatId(search);
+                }
             } else {
-                showCats();
+                if (isMounted) {
+                    showCats();
+                }
             }
         } catch (error) {
             throw new Error(error as string)
         } finally {
-            setLoading(false)
+            if (isMounted) {
+                setLoading(false);
+            }
         }
+        return () => {
+            isMounted = false;
+        };
     }, [search]);
     useEffect(() => {
         BackHandler.addEventListener('hardwareBackPress', () => {
@@ -43,7 +63,8 @@ export function Home() {
         navigation.navigate('Cat', {
             cat
         });
-    }
+    };
+    console.log(catsSearched)
     return (
         <Container>
             <StatusBar
@@ -58,9 +79,9 @@ export function Home() {
             <SearchInput value={search} onChangeText={(search) => setSearch(search)} />
             {loading ? <LoadAnimation /> :
                 <>
-                    {catSearched ?
+                    {search ?
                         <CatList
-                            data={catSearched}
+                            data={catsSearched}
                             keyExtractor={(item: Cat) => item.id}
                             renderItem={({ item }: any) =>
                                 <CatCard data={item} onPress={() => handleCatCard(item)} />}
