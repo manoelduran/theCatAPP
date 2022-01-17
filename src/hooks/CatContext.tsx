@@ -1,4 +1,4 @@
-import React, { createContext, ReactNode, useContext, useState } from 'react';
+import React, { createContext, ReactNode, useContext, useEffect, useState } from 'react';
 import AsyncStorage, { useAsyncStorage } from '@react-native-async-storage/async-storage';
 import * as api from '../services/api';
 import { Alert } from 'react-native';
@@ -20,7 +20,7 @@ const CatContext = createContext({} as CatContextData);
 function CatProvider({ children }: CatProviderProps) {
     const [cats, setCats] = useState<Cat[]>([]);
     const [catsFavorite, setCatsFavorite] = useState<Cat[]>([] as Cat[]);
-    const { setItem, removeItem } = useAsyncStorage('@CatsFavorite');
+    const { setItem, removeItem, getItem } = useAsyncStorage('@CatsFavorite');
     const [loading, setLoading] = useState(true);
     async function showCats() {
         try {
@@ -56,6 +56,20 @@ function CatProvider({ children }: CatProviderProps) {
         };
     };
 
+    useEffect(() => {
+        async function loadUserData() {
+            const favoriteCollection = await getItem();
+            const parsedFavorite = JSON.parse(String(favoriteCollection))
+            console.log('AQUIIIIIIIIIIIIIIIIIIIIIII PORRAAAA')
+            console.log(parsedFavorite)
+            if (parsedFavorite) {
+                const FavoriteCatData = parsedFavorite as unknown as Cat[]
+                setCatsFavorite(FavoriteCatData)
+                setLoading(false);
+            };
+        }
+        loadUserData();
+    }, [])
 
     return (
         <CatContext.Provider value={{ cats, showCats, catsFavorite, favoriteCat, loading, removeCat }}>
