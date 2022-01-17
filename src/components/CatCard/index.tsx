@@ -13,11 +13,11 @@ interface CatCardProps {
 }
 export function CatCard({ data, onPress }: CatCardProps) {
     const { cats } = useCat();
-    const findedImage = cats.find(cat => cat.id === data.id)
+    const findedImage = cats.find(cat => cat.id === data.id);
     return (
         <Container onPress={onPress}  >
             {findedImage ?
-                <Image source={{ uri: findedImage.image.url }} width={findedImage.image.width} height={findedImage.image.height} resizeMode="contain" />
+                <Image source={{ uri: findedImage?.image?.url }} width={findedImage?.image?.width} height={findedImage?.image?.height} resizeMode="contain" />
                 :
                 null
             }

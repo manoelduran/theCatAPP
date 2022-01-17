@@ -21,7 +21,6 @@ export function Home() {
     const [search, setSearch] = useState('');
     const [loading, setLoading] = useState(true);
     async function showCatId(search: string) {
-        console.log(search);
         try {
             const catList = await api.SearchCatById(search);
             setCatsSearched(catList);
@@ -64,7 +63,7 @@ export function Home() {
             cat
         });
     };
-    console.log(catsSearched)
+
     return (
         <Container>
             <StatusBar

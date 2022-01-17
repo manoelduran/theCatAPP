@@ -30,7 +30,7 @@ interface Params {
 export function Cat() {
     const route = useRoute();
     const { cat } = route.params as Params;
-    const { favoriteCat, removeCat, catsFavorite } = useCat();
+    const { favoriteCat, removeCat, catsFavorite} = useCat();
     const theme = useTheme();
     const navigation = useNavigation();
     function handleBack() {

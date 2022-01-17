@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { TextInputProps } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 import {
     Container,
@@ -17,7 +16,6 @@ export function SearchInput({ value, onChangeText }: SearchInputProps) {
     const [displaySearch, setDisplaySearch] = useState(value);
 
     function handleSearch(search: string) {
-        console.log(search)
         setDisplaySearch(search);
         setTimeout(() => {
             setTimeout(() =>  onChangeText(search), 2000);

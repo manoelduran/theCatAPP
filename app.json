@@ -1,11 +1,12 @@
 {
   "expo": {
-    "name": "Catapp",
-    "slug": "Catapp",
+    "name": "miaupp",
+    "slug": "miaupp",
+    "scheme": "miaupp",
     "version": "1.0.0",
     "assetBundlePatterns": [
       "**/*"
     ]
   },
-  "name": "Catapp"
+  "name": "miaupp"
 }

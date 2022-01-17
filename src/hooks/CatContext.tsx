@@ -1,5 +1,5 @@
 import React, { createContext, ReactNode, useContext, useEffect, useState } from 'react';
-import AsyncStorage, { useAsyncStorage } from '@react-native-async-storage/async-storage';
+import { useAsyncStorage } from '@react-native-async-storage/async-storage';
 import * as api from '../services/api';
 import { Alert } from 'react-native';
 
@@ -57,6 +57,7 @@ function CatProvider({ children }: CatProviderProps) {
     };
 
     useEffect(() => {
+        let isMounted = true;
         async function loadUserData() {
             const favoriteCollection = await getItem();
             const parsedFavorite = JSON.parse(String(favoriteCollection))
@@ -64,12 +65,17 @@ function CatProvider({ children }: CatProviderProps) {
             console.log(parsedFavorite)
             if (parsedFavorite) {
                 const FavoriteCatData = parsedFavorite as unknown as Cat[]
-                setCatsFavorite(FavoriteCatData)
-                setLoading(false);
+                if (isMounted) {
+                    setCatsFavorite(FavoriteCatData)
+                    setLoading(false);
+                }
             };
-        }
+        };
         loadUserData();
-    }, [])
+        return () => {
+            isMounted = false;
+        };
+    }, []);
 
     return (
         <CatContext.Provider value={{ cats, showCats, catsFavorite, favoriteCat, loading, removeCat }}>
