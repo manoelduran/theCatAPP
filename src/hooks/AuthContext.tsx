@@ -1,5 +1,7 @@
 import React, { createContext, ReactNode, useContext, useEffect, useState } from 'react';
 import { useAsyncStorage } from '@react-native-async-storage/async-storage';
+const { CLIENT_ID } = process.env;
+const { REDIRECT_URI } = process.env;
 import * as AuthSession from 'expo-auth-session';
 
 
@@ -28,8 +30,6 @@ function AuthProvider({ children }: AuthProviderProps) {
 
     async function signInWithGoogle() {
         try {
-            const CLIENT_ID = '870453549633-r2qfj6lkcp5j8h9t3sfo13vg9rg7eo49.apps.googleusercontent.com';
-            const REDIRECT_URI = 'https://auth.expo.io/@manoelduran/miaupp';
             const RESPONSE_TOKEN = 'token';
             const SCOPE = encodeURI('profile email');
             const authUrl = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TOKEN}&scope=${SCOPE}`;
