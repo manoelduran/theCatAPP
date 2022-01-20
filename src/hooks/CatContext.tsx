@@ -13,7 +13,8 @@ interface CatContextData {
     loading: boolean;
     showCats: () => Promise<void>;
     favoriteCat: (cat: Cat) => Promise<void>;
-    removeCat: () => Promise<void>;
+    removeCat: (cat: Cat) => Promise<void>;
+    removeAllCats: () => Promise<void>;
 }
 const CatContext = createContext({} as CatContextData);
 
@@ -45,7 +46,19 @@ function CatProvider({ children }: CatProviderProps) {
             throw new Error(error as string);
         }
     };
-    async function removeCat() {
+    async function removeCat(cat: Cat) {
+        const removedCat = await catsFavorite.filter(catFiltered => catFiltered.id !== cat.id)
+        try {
+            await setItem(JSON.stringify(removedCat))
+            setCatsFavorite(removedCat)
+        } catch (error) {
+            throw new Error(error as string);
+        } finally {
+            setLoading(false);
+        };
+    };
+
+    async function removeAllCats() {
         try {
             await removeItem()
             setCatsFavorite([] as Cat[])
@@ -78,7 +91,7 @@ function CatProvider({ children }: CatProviderProps) {
     }, []);
 
     return (
-        <CatContext.Provider value={{ cats, showCats, catsFavorite, favoriteCat, loading, removeCat }}>
+        <CatContext.Provider value={{ cats, showCats, removeAllCats, catsFavorite, favoriteCat, loading, removeCat }}>
             {children}
         </CatContext.Provider>
     )

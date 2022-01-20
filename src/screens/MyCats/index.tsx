@@ -15,7 +15,7 @@ import {
 import { StatusBar } from 'react-native';
 
 export function MyCats() {
-    const { removeCat } = useCat();
+    const { removeAllCats } = useCat();
     const [catList, setCatList] = useState<Cat[]>([] as Cat[] ?? null);
     const [loading, setLoading] = useState(true);
     useEffect(() => {
@@ -47,7 +47,7 @@ export function MyCats() {
     }
     return (
         <Container>
-                     <StatusBar
+            <StatusBar
                 barStyle='light-content'
                 backgroundColor='transparent'
                 translucent
@@ -65,7 +65,7 @@ export function MyCats() {
                             renderItem={({ item }: any) =>
                                 <CatCard data={item} onPress={() => handleCatCard(item)} />}
                         />
-                        <Button title='Limpar Favoritos ' onPress={() => removeCat()} />
+                        <Button title='Limpar Favoritos ' onPress={() => removeAllCats()} />
                     </>
                         : null}
                 </>

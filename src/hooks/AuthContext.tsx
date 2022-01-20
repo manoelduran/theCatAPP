@@ -26,8 +26,8 @@ const AuthContext = createContext({} as AuthContextData);
 
 function AuthProvider({ children }: AuthProviderProps) {
     const [user, setUser] = useState<User>({} as User);
-    const { setItem, removeItem } = useAsyncStorage('@User');
-
+    const { setItem, removeItem, getItem } = useAsyncStorage('@User');
+    const [loading, setLoading] = useState(true);
     async function signInWithGoogle() {
         try {
             const RESPONSE_TOKEN = 'token';
@@ -57,6 +57,27 @@ function AuthProvider({ children }: AuthProviderProps) {
         await removeItem();
         setUser({} as User);
     }
+
+    useEffect(() => {
+        let isMounted = true;
+        async function loadUserData() {
+            const userCollection = await getItem();
+            const parsedUser = JSON.parse(String(userCollection))
+            console.log('AQUIIIIIIIIIIIIIIIIIIIIIII PORRAAAA')
+            console.log(parsedUser)
+            if (parsedUser) {
+                const userData = parsedUser as unknown as User;
+                if (isMounted) {
+                    setUser(userData)
+                    setLoading(false);
+                }
+            };
+        };
+        loadUserData();
+        return () => {
+            isMounted = false;
+        };
+    }, []);
 
 
     return (

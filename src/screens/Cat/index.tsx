@@ -58,7 +58,7 @@ export function Cat() {
                     <Origin> {cat.origin} </Origin>
                     {catsFavorite.find(catFavorite => catFavorite.id === cat.id)
                         ?
-                        <Icon name='star' size={30} active={true} onPress={() => removeCat()} />
+                        <Icon name='star' size={30} active={true} onPress={() => removeCat(cat)} />
                         :
                         <Icon name='star' size={30} active={false} onPress={() => favoriteCat(cat)} />
                     }
