@@ -6,7 +6,15 @@
     "version": "1.0.0",
     "assetBundlePatterns": [
       "**/*"
-    ]
+    ],
+    "ios": {
+      "bundleIdentifier": "com.miaupp",
+      "buildNumber": "1.0.0"
+    },
+    "android": {
+      "package": "com.miaupp",
+      "versionCode": 1
+    }
   },
   "name": "miaupp"
 }
