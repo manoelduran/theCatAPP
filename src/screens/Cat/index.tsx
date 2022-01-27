@@ -30,7 +30,8 @@ interface Params {
 export function Cat() {
     const route = useRoute();
     const { cat } = route.params as Params;
-    const { favoriteCat, removeCat, catsFavorite} = useCat();
+    const { favoriteCat, removeCat, catsFavorite, cats} = useCat();
+    const findedImage = cats.find(catfinded => catfinded.id === cat.id);
     const theme = useTheme();
     const navigation = useNavigation();
     function handleBack() {
@@ -53,7 +54,11 @@ export function Cat() {
                 <Title>Everything you need to know about '{cat.name}'  breed</Title>
             </Header>
             <Content>
+            {findedImage ?
+                <Image source={{ uri: findedImage?.image?.url }} width={findedImage?.image?.width} height={findedImage?.image?.height} resizeMode="contain" />
+                :
                 <Image source={{ uri: cat?.image?.url }} width={cat?.image?.width} height={cat?.image?.height} resizeMode="contain" />
+            }
                 <Details>
                     <Origin> {cat.origin} </Origin>
                     {catsFavorite.find(catFavorite => catFavorite.id === cat.id)

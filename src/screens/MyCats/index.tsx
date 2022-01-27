@@ -2,6 +2,7 @@ import { useNavigation } from '@react-navigation/native';
 import React, { useEffect, useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { CatCard } from '../../components/CatCard';
+import { Feather } from '@expo/vector-icons';
 import { LoadAnimation } from '../../components/LoadAnimation';
 import { useCat } from '../../hooks/CatContext';
 import {
@@ -10,14 +11,37 @@ import {
     Title,
     Subtitle,
     CatList,
-    Button
+    Button,
+    LogoutButton
 } from './styles';
-import { StatusBar } from 'react-native';
+import { Alert, StatusBar } from 'react-native';
+import { useTheme } from 'styled-components/native';
+import { useAuth } from '../../hooks/AuthContext';
 
 export function MyCats() {
     const { removeAllCats } = useCat();
+    const { signOut } = useAuth();
+    const theme = useTheme();
     const [catList, setCatList] = useState<Cat[]>([] as Cat[] ?? null);
     const [loading, setLoading] = useState(true);
+
+    async function handleSignOut() {
+        Alert.alert('Tem certeza',
+            'Se você sair, irá precisar de internet para conectar-se novamente.',
+            [
+                {
+                    text: 'Cancelar',
+                    onPress: () => { },
+                    style: 'cancel'
+                },
+                {
+                    text: 'Sair',
+                    onPress: () => signOut()
+                }
+            ]
+        );
+    };
+
     useEffect(() => {
         let isMounted = true;
         async function showFavorites() {
@@ -38,7 +62,7 @@ export function MyCats() {
         return () => {
             isMounted = false;
         };
-    }, [catList]);
+    }, [CatList, removeAllCats]);
     const navigation = useNavigation<any>();
     function handleCatCard(cat: Cat) {
         navigation.navigate('Cat', {
@@ -54,8 +78,15 @@ export function MyCats() {
             />
             <Header>
                 <Title>MiauPP</Title>
+                <LogoutButton onPress={handleSignOut}  >
+                    <Feather
+                        name="power"
+                        color={theme.colors.shape}
+                        size={24}
+                    />
+                </LogoutButton>
             </Header>
-            <Subtitle>Favorites Cats</Subtitle>
+            <Subtitle>Favorite Cats</Subtitle>
             {loading ? <LoadAnimation /> :
                 <>
                     {catList ? <>

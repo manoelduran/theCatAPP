@@ -10,16 +10,21 @@ flex: 1;
 export const Header = styled.View`
 width: 100%;
 height: 250px;
+flex-direction: row;
 background-color: ${({ theme }) => theme.colors.header};
-justify-content: center;
-padding: 25px;
+justify-content: space-between;
+align-items: center;
+padding: 24px;
 padding-top: ${getStatusBarHeight() + 30}px;
 `;
+
+export const LogoutButton = styled.TouchableOpacity`
+`;
+
 export const Title = styled.Text`
 font-size: ${RFValue(30)}px;
 font-family: ${({ theme }) => theme.fonts.medium};
 color: ${({ theme }) => theme.colors.shape};
-margin-top: 24px;
 `;
 
 export const Subtitle = styled.Text`
