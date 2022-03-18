@@ -26,16 +26,16 @@ export function MyCats() {
     const [loading, setLoading] = useState(true);
 
     async function handleSignOut() {
-        Alert.alert('Tem certeza',
-            'Se você sair, irá precisar de internet para conectar-se novamente.',
+        Alert.alert('Are you sure?',
+            'If you get out, you will need a internet conection to sign in!',
             [
                 {
-                    text: 'Cancelar',
+                    text: 'Cancel',
                     onPress: () => { },
                     style: 'cancel'
                 },
                 {
-                    text: 'Sair',
+                    text: 'signOut',
                     onPress: () => signOut()
                 }
             ]

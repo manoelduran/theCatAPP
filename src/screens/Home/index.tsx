@@ -31,7 +31,7 @@ export function Home() {
             const catList = await api.SearchCatById(search);
             setCatsSearched(catList);
         } catch (error: any) {
-            return Alert.alert('Erro ao buscar a lista de gatos', error.message);
+            return Alert.alert('Fail to get the list of cats', error.message);
         } finally {
             setLoading(false);
         }
@@ -71,16 +71,16 @@ export function Home() {
     };
 
     async function handleSignOut() {
-        Alert.alert('Tem certeza',
-            'Se você sair, irá precisar de internet para conectar-se novamente.',
+        Alert.alert('Are you sure?',
+            'If you get out, you will need a internet conection to sign in!',
             [
                 {
-                    text: 'Cancelar',
+                    text: 'Cancel',
                     onPress: () => { },
                     style: 'cancel'
                 },
                 {
-                    text: 'Sair',
+                    text: 'signOut',
                     onPress: () => signOut()
                 }
             ]

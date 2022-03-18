@@ -16,7 +16,10 @@ align-items: center;
 export const TitleWrapper = styled.View`
 align-items: center;
 `;
-
+export const Logo = styled.Image`
+width: 200px;
+height: 200px;
+`;
 export const Title = styled.Text`
 font-family: ${({theme}) => theme.fonts.medium};
 color: ${({theme}) => theme.colors.shape};

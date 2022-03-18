@@ -1,0 +1,173 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.catapp"
+4    android:versionCode="1"
+5    android:versionName="1.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="21"
+9        android:targetSdkVersion="30" />
+10
+11    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+11-->/home/manoel/Codigos/Catapp/android/app/src/main/AndroidManifest.xml:3:3-75
+11-->/home/manoel/Codigos/Catapp/android/app/src/main/AndroidManifest.xml:3:20-73
+12    <uses-permission android:name="android.permission.INTERNET" />
+12-->/home/manoel/Codigos/Catapp/android/app/src/main/AndroidManifest.xml:2:3-64
+12-->/home/manoel/Codigos/Catapp/android/app/src/main/AndroidManifest.xml:2:20-62
+13    <uses-permission android:name="android.permission.VIBRATE" />
+13-->/home/manoel/Codigos/Catapp/android/app/src/main/AndroidManifest.xml:4:3-63
+13-->/home/manoel/Codigos/Catapp/android/app/src/main/AndroidManifest.xml:4:20-61
+14    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+14-->/home/manoel/Codigos/Catapp/android/app/src/main/AndroidManifest.xml:5:3-77
+14-->/home/manoel/Codigos/Catapp/android/app/src/main/AndroidManifest.xml:5:20-75
+15    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+15-->/home/manoel/Codigos/Catapp/android/app/src/main/AndroidManifest.xml:6:3-78
+15-->/home/manoel/Codigos/Catapp/android/app/src/main/AndroidManifest.xml:6:20-76
+16
+17    <queries>
+17-->/home/manoel/Codigos/Catapp/android/app/src/main/AndroidManifest.xml:7:3-13:13
+18        <intent>
+18-->/home/manoel/Codigos/Catapp/android/app/src/main/AndroidManifest.xml:8:5-12:14
+19            <action android:name="android.intent.action.VIEW" />
+19-->/home/manoel/Codigos/Catapp/android/app/src/main/AndroidManifest.xml:9:7-58
+19-->/home/manoel/Codigos/Catapp/android/app/src/main/AndroidManifest.xml:9:15-56
+20
+21            <category android:name="android.intent.category.BROWSABLE" />
+21-->/home/manoel/Codigos/Catapp/android/app/src/main/AndroidManifest.xml:10:7-67
+21-->/home/manoel/Codigos/Catapp/android/app/src/main/AndroidManifest.xml:10:17-65
+22
+23            <data android:scheme="https" />
+23-->/home/manoel/Codigos/Catapp/android/app/src/main/AndroidManifest.xml:11:7-37
+23-->/home/manoel/Codigos/Catapp/android/app/src/main/AndroidManifest.xml:11:13-35
+24        </intent>
+25        <!-- Query open documents -->
+26        <intent>
+26-->[:expo-file-system] /home/manoel/Codigos/Catapp/node_modules/expo-file-system/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:19:9-21:18
+27            <action android:name="android.intent.action.OPEN_DOCUMENT_TREE" />
+27-->[:expo-file-system] /home/manoel/Codigos/Catapp/node_modules/expo-file-system/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:20:13-79
+27-->[:expo-file-system] /home/manoel/Codigos/Catapp/node_modules/expo-file-system/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:20:21-76
+28        </intent>
+29        <intent>
+29-->[:expo-web-browser] /home/manoel/Codigos/Catapp/node_modules/expo-web-browser/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:12:9-16:18
+30
+31            <!-- Required for opening tabs if targeting API 30 -->
+32            <action android:name="android.support.customtabs.action.CustomTabsService" />
+32-->[:expo-web-browser] /home/manoel/Codigos/Catapp/node_modules/expo-web-browser/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:15:13-90
+32-->[:expo-web-browser] /home/manoel/Codigos/Catapp/node_modules/expo-web-browser/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:15:21-87
+33        </intent>
+34    </queries>
+35
+36    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+36-->[com.facebook.flipper:flipper:0.54.0] /home/manoel/.gradle/caches/transforms-3/62ece1a98ef095db320a1cbbfb42e6fd/transformed/jetified-flipper-0.54.0/AndroidManifest.xml:16:5-76
+36-->[com.facebook.flipper:flipper:0.54.0] /home/manoel/.gradle/caches/transforms-3/62ece1a98ef095db320a1cbbfb42e6fd/transformed/jetified-flipper-0.54.0/AndroidManifest.xml:16:22-73
+37    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+38    <uses-permission android:name="com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE" />
+38-->[com.android.installreferrer:installreferrer:1.0] /home/manoel/.gradle/caches/transforms-3/9a46b6b6eae9e63e5f66f954ff99a7a4/transformed/jetified-installreferrer-1.0/AndroidManifest.xml:9:5-110
+38-->[com.android.installreferrer:installreferrer:1.0] /home/manoel/.gradle/caches/transforms-3/9a46b6b6eae9e63e5f66f954ff99a7a4/transformed/jetified-installreferrer-1.0/AndroidManifest.xml:9:22-107
+39
+40    <application
+40-->/home/manoel/Codigos/Catapp/android/app/src/main/AndroidManifest.xml:14:3-27:17
+41        android:name="com.catapp.MainApplication"
+41-->/home/manoel/Codigos/Catapp/android/app/src/main/AndroidManifest.xml:14:16-47
+42        android:allowBackup="false"
+42-->/home/manoel/Codigos/Catapp/android/app/src/main/AndroidManifest.xml:14:162-189
+43        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+43-->[androidx.core:core:1.6.0] /home/manoel/.gradle/caches/transforms-3/63630bff35c5941492530625c68eb7d4/transformed/core-1.6.0/AndroidManifest.xml:24:18-86
+44        android:debuggable="true"
+45        android:icon="@mipmap/ic_launcher"
+45-->/home/manoel/Codigos/Catapp/android/app/src/main/AndroidManifest.xml:14:81-115
+46        android:label="@string/app_name"
+46-->/home/manoel/Codigos/Catapp/android/app/src/main/AndroidManifest.xml:14:48-80
+47        android:roundIcon="@mipmap/ic_launcher_round"
+47-->/home/manoel/Codigos/Catapp/android/app/src/main/AndroidManifest.xml:14:116-161
+48        android:theme="@style/AppTheme"
+48-->/home/manoel/Codigos/Catapp/android/app/src/main/AndroidManifest.xml:14:190-221
+49        android:usesCleartextTraffic="true" >
+49-->/home/manoel/Codigos/Catapp/android/app/src/main/AndroidManifest.xml:14:222-257
+50        <meta-data
+50-->/home/manoel/Codigos/Catapp/android/app/src/main/AndroidManifest.xml:15:5-122
+51            android:name="expo.modules.updates.EXPO_UPDATE_URL"
+51-->/home/manoel/Codigos/Catapp/android/app/src/main/AndroidManifest.xml:15:16-67
+52            android:value="https://exp.host/@manoelduran/Catapp" />
+52-->/home/manoel/Codigos/Catapp/android/app/src/main/AndroidManifest.xml:15:68-120
+53        <meta-data
+53-->/home/manoel/Codigos/Catapp/android/app/src/main/AndroidManifest.xml:16:5-93
+54            android:name="expo.modules.updates.EXPO_SDK_VERSION"
+54-->/home/manoel/Codigos/Catapp/android/app/src/main/AndroidManifest.xml:16:16-68
+55            android:value="44.0.0" />
+55-->/home/manoel/Codigos/Catapp/android/app/src/main/AndroidManifest.xml:16:69-91
+56        <meta-data
+56-->/home/manoel/Codigos/Catapp/android/app/src/main/AndroidManifest.xml:17:5-82
+57            android:name="expo.modules.updates.ENABLED"
+57-->/home/manoel/Codigos/Catapp/android/app/src/main/AndroidManifest.xml:17:16-59
+58            android:value="true" />
+58-->/home/manoel/Codigos/Catapp/android/app/src/main/AndroidManifest.xml:17:60-80
+59        <meta-data
+59-->/home/manoel/Codigos/Catapp/android/app/src/main/AndroidManifest.xml:18:5-105
+60            android:name="expo.modules.updates.EXPO_UPDATES_CHECK_ON_LAUNCH"
+60-->/home/manoel/Codigos/Catapp/android/app/src/main/AndroidManifest.xml:18:16-80
+61            android:value="ALWAYS" />
+61-->/home/manoel/Codigos/Catapp/android/app/src/main/AndroidManifest.xml:18:81-103
+62        <meta-data
+62-->/home/manoel/Codigos/Catapp/android/app/src/main/AndroidManifest.xml:19:5-99
+63            android:name="expo.modules.updates.EXPO_UPDATES_LAUNCH_WAIT_MS"
+63-->/home/manoel/Codigos/Catapp/android/app/src/main/AndroidManifest.xml:19:16-79
+64            android:value="0" />
+64-->/home/manoel/Codigos/Catapp/android/app/src/main/AndroidManifest.xml:19:80-97
+65
+66        <activity
+66-->/home/manoel/Codigos/Catapp/android/app/src/main/AndroidManifest.xml:20:5-25:16
+67            android:name="com.catapp.MainActivity"
+67-->/home/manoel/Codigos/Catapp/android/app/src/main/AndroidManifest.xml:20:15-43
+68            android:configChanges="keyboard|keyboardHidden|orientation|screenSize|uiMode"
+68-->/home/manoel/Codigos/Catapp/android/app/src/main/AndroidManifest.xml:20:77-154
+69            android:label="@string/app_name"
+69-->/home/manoel/Codigos/Catapp/android/app/src/main/AndroidManifest.xml:20:44-76
+70            android:launchMode="singleTask"
+70-->/home/manoel/Codigos/Catapp/android/app/src/main/AndroidManifest.xml:20:155-186
+71            android:theme="@style/Theme.App.SplashScreen"
+71-->/home/manoel/Codigos/Catapp/android/app/src/main/AndroidManifest.xml:20:230-275
+72            android:windowSoftInputMode="adjustResize" >
+72-->/home/manoel/Codigos/Catapp/android/app/src/main/AndroidManifest.xml:20:187-229
+73            <intent-filter>
+73-->/home/manoel/Codigos/Catapp/android/app/src/main/AndroidManifest.xml:21:7-24:23
+74                <action android:name="android.intent.action.MAIN" />
+74-->/home/manoel/Codigos/Catapp/android/app/src/main/AndroidManifest.xml:22:9-60
+74-->/home/manoel/Codigos/Catapp/android/app/src/main/AndroidManifest.xml:22:17-58
+75
+76                <category android:name="android.intent.category.LAUNCHER" />
+76-->/home/manoel/Codigos/Catapp/android/app/src/main/AndroidManifest.xml:23:9-68
+76-->/home/manoel/Codigos/Catapp/android/app/src/main/AndroidManifest.xml:23:19-66
+77            </intent-filter>
+78        </activity>
+79        <activity android:name="com.facebook.react.devsupport.DevSettingsActivity" />
+79-->/home/manoel/Codigos/Catapp/android/app/src/main/AndroidManifest.xml:26:5-81
+79-->/home/manoel/Codigos/Catapp/android/app/src/main/AndroidManifest.xml:26:15-79
+80
+81        <provider
+81-->[:expo-file-system] /home/manoel/Codigos/Catapp/node_modules/expo-file-system/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:25:9-34:20
+82            android:name="expo.modules.filesystem.FileSystemFileProvider"
+82-->[:expo-file-system] /home/manoel/Codigos/Catapp/node_modules/expo-file-system/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:26:13-74
+83            android:authorities="com.catapp.FileSystemFileProvider"
+83-->[:expo-file-system] /home/manoel/Codigos/Catapp/node_modules/expo-file-system/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:27:13-74
+84            android:exported="false"
+84-->[:expo-file-system] /home/manoel/Codigos/Catapp/node_modules/expo-file-system/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:28:13-37
+85            android:grantUriPermissions="true" >
+85-->[:expo-file-system] /home/manoel/Codigos/Catapp/node_modules/expo-file-system/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:29:13-47
+86            <meta-data
+86-->[:expo-file-system] /home/manoel/Codigos/Catapp/node_modules/expo-file-system/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:31:13-33:70
+87                android:name="android.support.FILE_PROVIDER_PATHS"
+87-->[:expo-file-system] /home/manoel/Codigos/Catapp/node_modules/expo-file-system/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:32:17-67
+88                android:resource="@xml/file_system_provider_paths" />
+88-->[:expo-file-system] /home/manoel/Codigos/Catapp/node_modules/expo-file-system/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:33:17-67
+89        </provider>
+90
+91        <meta-data
+91-->[:expo-modules-core] /home/manoel/Codigos/Catapp/node_modules/expo-modules-core/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:12:9-14:89
+92            android:name="org.unimodules.core.AppLoader#react-native-headless"
+92-->[:expo-modules-core] /home/manoel/Codigos/Catapp/node_modules/expo-modules-core/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:13:13-79
+93            android:value="expo.modules.adapters.react.apploader.RNHeadlessAppLoader" />
+93-->[:expo-modules-core] /home/manoel/Codigos/Catapp/node_modules/expo-modules-core/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:14:13-86
+94    </application>
+95
+96</manifest>
